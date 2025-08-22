@@ -9,6 +9,7 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
+    font-size: 16px;
   }
   body {
     display: flex;
@@ -35,6 +36,8 @@
     padding: 20px;
     background: rgba(252, 194, 230, 0.9);
     text-align: center;
+    width: 90vw;      /* กว้าง 90% ของหน้าจอมือถือ */
+    max-width: 400px;
   }
   img {
     max-width: 300px;
@@ -62,11 +65,11 @@
   }
   .message-box {
     border: 3px dashed #ff69b4;
-    padding: 15px;
-    margin-top: 20px;
-    font-size: 20px;
+    padding: 12px;
+    margin-top: 15px;
+    font-size: 18px;
     background: #fff0f6;
-  }
+}
   .heart {
     position: absolute;
     color: #ff69b4;
@@ -74,6 +77,11 @@
     opacity: 0.6;
     pointer-events: none; /* กันกดทับปุ่ม */
     user-select: none;
+  }
+  @media (max-width: 400px) {
+    .btn { font-size: 14px; padding: 8px 12px; min-width: 80px; }
+    .love { font-size: 20px !important; padding: 12px 25px; }
+    .message-box { font-size: 16px; padding: 10px 12px; }
   }
 </style>
 </head>
