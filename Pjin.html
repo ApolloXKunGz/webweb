@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Question for P'Yujin ❤️</title>
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #ffe4ec;
+    box-sizing: border-box;
+  }
+  /* .frame {
+    display: inline-block;
+    border: 5px solid #f78fc3;
+    border-radius: 15px;
+    padding: 20px;
+    background: rgb(252, 194, 230);
+  } */
+  .frame {
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    border: 5px solid #f78fc3;
+    border-radius: 15px;
+    padding: 20px;
+    background: rgba(252, 194, 230, 0.9);
+    text-align: center;
+  }
+  img {
+    max-width: 300px;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    transition: all 0.3s ease;
+  }
+  .btn {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    transition: 0.3s;
+  }
+  .yes { background-color: #f781bc; color: white; }
+  .no { background-color: #ccc; }
+  .love {
+    background-color: red;
+    color: white;
+    font-size: 30px !important;
+    padding: 20px 40px;
+  }
+  .message-box {
+    border: 3px dashed #ff69b4;
+    padding: 15px;
+    margin-top: 20px;
+    font-size: 20px;
+    background: #fff0f6;
+  }
+  .heart {
+    position: absolute;
+    color: #ff69b4;
+    font-size: 20px;
+    opacity: 0.6;
+    pointer-events: none; /* กันกดทับปุ่ม */
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="frame" id="mainFrame">
+  <h1 id="question">อชิน่ารักม้ายยยย 😋</h1>
+  <img id="gif" src="https://media.tenor.com/DUbDK--YZlwAAAAi/snoot-challenge-the-pet-collective.gif" alt="cute gif">
+  <div id="btnContainer"></div>
+</div>
+
+<script>
+  const gif = document.getElementById('gif');
+  const question = document.getElementById('question');
+  const btnContainer = document.getElementById('btnContainer');
+  let yesBtnSize = 18;
+  let noCount = 0;
+
+
+  // แก้ตรงนี้เพื่อเปลี่ยนรูปเมื่อกด no
+  let gifs = ["https://media.tenor.com/LSp7Lhsw8HsAAAAi/dog-silly.gif", 
+    "https://media1.tenor.com/m/uj4Cnt7RVE0AAAAd/fatdog-dog.gif",
+    "https://media.tenor.com/LSp7Lhsw8HsAAAAj/dog-silly.gif",
+    "https://media1.tenor.com/m/tDaIKZXmXR4AAAAd/cute-dog-doggy.gif",
+    "https://media.tenor.com/Mp7mfB7tWv0AAAAi/sad-upset.gif",
+    "https://media1.tenor.com/m/CKqcMvXZfoMAAAAd/cute-dog.gif"
+  ]
+
+  function initButtons() {
+    btnContainer.innerHTML = `
+      <button class="btn yes" id="yesBtn">น่ารักมากกก 💞</button>
+      <button class="btn no" id="noBtn">ม่ายยย 😢</button>
+    `;
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+
+    yesBtn.addEventListener('click', () => yesClick(yesBtn));
+    noBtn.addEventListener('click', () => noClick(yesBtn, noBtn));
+  }
+
+  function resetPage() {
+    noCount = 0;
+    yesBtnSize = 18;
+    question.textContent = "อชิน่ารักม้ายยยย 😋";
+    // แก้ตรงนี้เพื่อเปลี่ยนรูปหน้าแรก
+    gif.src = "https://media.tenor.com/DUbDK--YZlwAAAAi/snoot-challenge-the-pet-collective.gif";
+    initButtons();
+  }
+
+  function yesClick(yesBtn) {
+    // แก้ตรงนี้เพื่อเปลี่ยนรูปเมื่อกด yes
+    gif.src = "https://media1.tenor.com/m/4RxI15EaHtYAAAAd/dog-puppy.gif";
+    question.textContent = "เย้ พี่จินก็น่ารักเหมือนกานนนน 😛";
+    btnContainer.innerHTML = `<button class="btn" id="homeBtn">Home 🏠</button>`;
+    document.getElementById('homeBtn').addEventListener('click', resetPage);
+  }
+
+  function noClick(yesBtn, noBtn) {
+    yesBtnSize += 10;
+    yesBtn.style.fontSize = yesBtnSize + 'px';
+    noCount++;
+    gif.src = gifs[noCount]
+    if (noCount >= 5) {
+      noBtn.remove();
+      yesBtn.textContent = "น่ารักกกก 😡💢";
+      yesBtn.classList.add('love');
+      yesBtn.onclick = () => {
+        // แก้ตรงนี้เพื่อเปลี่ยนรูปเมื่อกด love
+        gif.src = "https://media1.tenor.com/m/hEaf9Enlf-wAAAAd/i-love-you-i-love-you-too.gif";
+        question.innerHTML = `<div class="message-box">เย้้้ พี่จินก็น่าร้ากกกกกก 😋</div>`;
+        btnContainer.innerHTML = `<button class="btn" id="homeBtn">Reset 💢</button>`;
+        document.getElementById('homeBtn').addEventListener('click', resetPage);
+      };
+    }
+  }
+
+  function createHearts(num) {
+    for (let i = 0; i < num; i++) {
+      let heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤";
+
+      // สุ่มตำแหน่ง
+      heart.style.top = Math.random() * 100 + "vh";
+      heart.style.left = Math.random() * 100 + "vw";
+
+      // สุ่มขนาด
+      let size = Math.random() * 30 + 10;
+      heart.style.fontSize = size + "px";
+
+      // สุ่มการหมุน
+      heart.style.transform = "rotate(" + (Math.random() * 360) + "deg)";
+
+      document.body.appendChild(heart);
+    }
+  }
+
+  // ใส่หัวใจ 40 ดวง
+  createHearts(80);
+
+  resetPage();
+</script>
+
+</body>
+</html>
