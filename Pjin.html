@@ -36,7 +36,7 @@
     padding: 20px;
     background: rgba(252, 194, 230, 0.9);
     text-align: center;
-    width: 85%;      /* กว้าง 90% ของหน้าจอมือถือ */
+    width: 85%;
     max-width: 380px;
   }
   img {
@@ -75,7 +75,7 @@
     color: #ff69b4;
     font-size: 20px;
     opacity: 0.6;
-    pointer-events: none; /* กันกดทับปุ่ม */
+    pointer-events: none;
     user-select: none;
   }
   @media (max-width: 400px) {
@@ -101,7 +101,7 @@
   let noCount = 0;
 
 
-  // แก้ตรงนี้เพื่อเปลี่ยนรูปเมื่อกด no
+
   let gifs = ["https://media.tenor.com/LSp7Lhsw8HsAAAAi/dog-silly.gif", 
     "https://media1.tenor.com/m/uj4Cnt7RVE0AAAAd/fatdog-dog.gif",
     "https://media.tenor.com/LSp7Lhsw8HsAAAAj/dog-silly.gif",
@@ -126,13 +126,11 @@
     noCount = 0;
     yesBtnSize = 18;
     question.textContent = "อชิน่ารักม้ายยยย 😋";
-    // แก้ตรงนี้เพื่อเปลี่ยนรูปหน้าแรก
     gif.src = "https://media.tenor.com/DUbDK--YZlwAAAAi/snoot-challenge-the-pet-collective.gif";
     initButtons();
   }
 
   function yesClick(yesBtn) {
-    // แก้ตรงนี้เพื่อเปลี่ยนรูปเมื่อกด yes
     gif.src = "https://media1.tenor.com/m/4RxI15EaHtYAAAAd/dog-puppy.gif";
     question.textContent = "เย้ พี่จินก็น่ารักเหมือนกานนนน 😛";
     btnContainer.innerHTML = `<button class="btn" id="homeBtn">Home 🏠</button>`;
@@ -149,7 +147,6 @@
       yesBtn.textContent = "น่ารักกกก 😡💢";
       yesBtn.classList.add('love');
       yesBtn.onclick = () => {
-        // แก้ตรงนี้เพื่อเปลี่ยนรูปเมื่อกด love
         gif.src = "https://media1.tenor.com/m/hEaf9Enlf-wAAAAd/i-love-you-i-love-you-too.gif";
         question.innerHTML = `<div class="message-box">เย้้้ พี่จินก็น่าร้ากกกกกก 😋</div>`;
         btnContainer.innerHTML = `<button class="btn" id="homeBtn">Reset 💢</button>`;
@@ -163,23 +160,17 @@
       let heart = document.createElement("div");
       heart.className = "heart";
       heart.innerHTML = "🩷";
-
-      // สุ่มตำแหน่ง
       heart.style.top = Math.random() * 100 + "vh";
       heart.style.left = Math.random() * 100 + "vw";
 
-      // สุ่มขนาด
       let size = Math.random() * 30 + 10;
       heart.style.fontSize = size + "px";
-
-      // สุ่มการหมุน
       heart.style.transform = "rotate(" + (Math.random() * 360) + "deg)";
 
       document.body.appendChild(heart);
     }
   }
 
-  // ใส่หัวใจ 40 ดวง
   createHearts(80);
 
   resetPage();
