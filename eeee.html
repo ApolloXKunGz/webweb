@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Question for P'Yejin ❤️</title>
+<title>Question for Yada ❤️</title>
 <style>
   html, body {
     height: 100%;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    font-size: 16px;
   }
   body {
     display: flex;
@@ -36,8 +35,6 @@
     padding: 20px;
     background: rgba(252, 194, 230, 0.9);
     text-align: center;
-    width: 85%;
-    max-width: 380px;
   }
   img {
     max-width: 300px;
@@ -65,23 +62,18 @@
   }
   .message-box {
     border: 3px dashed #ff69b4;
-    padding: 12px;
-    margin-top: 15px;
-    font-size: 18px;
+    padding: 15px;
+    margin-top: 20px;
+    font-size: 20px;
     background: #fff0f6;
-}
+  }
   .heart {
     position: absolute;
     color: #ff69b4;
     font-size: 20px;
     opacity: 0.6;
-    pointer-events: none;
+    pointer-events: none; /* กันกดทับปุ่ม */
     user-select: none;
-  }
-  @media (max-width: 400px) {
-    .btn { font-size: 14px; padding: 8px 12px; min-width: 80px; }
-    .love { font-size: 20px !important; padding: 12px 25px; }
-    .message-box { font-size: 16px; padding: 10px 12px;}
   }
 </style>
 </head>
@@ -101,7 +93,7 @@
   let noCount = 0;
 
 
-
+  // แก้ตรงนี้เพื่อเปลี่ยนรูปเมื่อกด no
   let gifs = ["https://media.tenor.com/LSp7Lhsw8HsAAAAi/dog-silly.gif", 
     "https://media1.tenor.com/m/uj4Cnt7RVE0AAAAd/fatdog-dog.gif",
     "https://media.tenor.com/LSp7Lhsw8HsAAAAj/dog-silly.gif",
@@ -126,14 +118,16 @@
     noCount = 0;
     yesBtnSize = 18;
     question.textContent = "อชิน่ารักม้ายยยย 😋";
+    // แก้ตรงนี้เพื่อเปลี่ยนรูปหน้าแรก
     gif.src = "https://media.tenor.com/DUbDK--YZlwAAAAi/snoot-challenge-the-pet-collective.gif";
     initButtons();
   }
 
   function yesClick(yesBtn) {
+    // แก้ตรงนี้เพื่อเปลี่ยนรูปเมื่อกด yes
     gif.src = "https://media1.tenor.com/m/4RxI15EaHtYAAAAd/dog-puppy.gif";
-    question.textContent = "เย้ พี่จินก็น่ารักเหมือนกานนนน 😛";
-    btnContainer.innerHTML = `<button class="btn" id="homeBtn">Reset 💢</button>`;
+    question.textContent = "เย้ ญาดาก็น่ารักนะคะะ 😛";
+    btnContainer.innerHTML = `<button class="btn" id="homeBtn">Home 🏠</button>`;
     document.getElementById('homeBtn').addEventListener('click', resetPage);
   }
 
@@ -147,8 +141,9 @@
       yesBtn.textContent = "น่ารักกกก 😡💢";
       yesBtn.classList.add('love');
       yesBtn.onclick = () => {
+        // แก้ตรงนี้เพื่อเปลี่ยนรูปเมื่อกด love
         gif.src = "https://media1.tenor.com/m/hEaf9Enlf-wAAAAd/i-love-you-i-love-you-too.gif";
-        question.innerHTML = `<div class="message-box">เย้้้ พี่จินก็น่าร้ากกกกกก 😋</div>`;
+        question.innerHTML = `<div class="message-box">เย้้้ ญาดาก็น่าร้ากกกกกก 😋</div>`;
         btnContainer.innerHTML = `<button class="btn" id="homeBtn">Reset 💢</button>`;
         document.getElementById('homeBtn').addEventListener('click', resetPage);
       };
@@ -159,18 +154,24 @@
     for (let i = 0; i < num; i++) {
       let heart = document.createElement("div");
       heart.className = "heart";
-      heart.innerHTML = "🩷";
+      heart.innerHTML = "❤";
+
+      // สุ่มตำแหน่ง
       heart.style.top = Math.random() * 100 + "vh";
       heart.style.left = Math.random() * 100 + "vw";
 
+      // สุ่มขนาด
       let size = Math.random() * 30 + 10;
       heart.style.fontSize = size + "px";
+
+      // สุ่มการหมุน
       heart.style.transform = "rotate(" + (Math.random() * 360) + "deg)";
 
       document.body.appendChild(heart);
     }
   }
 
+  // ใส่หัวใจ 40 ดวง
   createHearts(80);
 
   resetPage();
